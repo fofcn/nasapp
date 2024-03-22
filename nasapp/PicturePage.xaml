@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="nasapp.PicturePage"
+             Title="">
+    <Grid>
+        <CollectionView ItemsSource="{Binding Items}"
+                     RemainingItemsThreshold="2"
+                    RemainingItemsThresholdReachedCommand="{Binding LoadMoreItemsCommand}">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" Span="4" />
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            
+            <DataTemplate>
+                <Grid Padding="5">
+                    <Image Source="{Binding .}" Aspect="AspectFill" />
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- ActivityIndicator 控件，放在 CollectionView 上方 -->
+        <ActivityIndicator Grid.Row="0"
+                       IsRunning="{Binding IsLoading}"
+                       IsVisible="{Binding IsLoading}"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand" />
+    </Grid>
+</ContentPage>
